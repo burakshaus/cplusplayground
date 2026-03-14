@@ -7,8 +7,8 @@ string current;
 while(cin >> current){
 if(previous==current){
 cout<< "Repeated word: "<<current<< '\n';
-current = previous;
 }
+previous = current;
 }
 
 }
