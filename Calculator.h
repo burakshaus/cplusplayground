@@ -1,8 +1,8 @@
 #ifndef CALCULATOR_H
 #define CALCULATOR_H
-#include <QMainWİndow>
+#include <QMainWindow>
 #include <QPushButton>
-#include <QPLineEdit>
+#include <QLineEdit>
 #include <QGridLayout>
 #include <QString>
 
@@ -10,13 +10,13 @@ class Calculator: public QMainWindow{
 Q_OBJECT
 
 public :
-Calculator(QWidget *parent = nullpointer);
+Calculator(QWidget *parent = nullptr);
 ~Calculator();
 
 private slots: 
 	void onDigitClicked();
 	void onOperatorClicked();
-	void EqualClicked();
+	void onEqualClicked();
 	void onClearClicked();
 private :
 	QLineEdit *display;

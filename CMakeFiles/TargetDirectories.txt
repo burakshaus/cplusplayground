@@ -1,0 +1,5 @@
+/home/burak/Projects/cppplayground/cplusplayground/CMakeFiles/calculator.dir
+/home/burak/Projects/cppplayground/cplusplayground/CMakeFiles/edit_cache.dir
+/home/burak/Projects/cppplayground/cplusplayground/CMakeFiles/rebuild_cache.dir
+/home/burak/Projects/cppplayground/cplusplayground/CMakeFiles/calculator_autogen_timestamp_deps.dir
+/home/burak/Projects/cppplayground/cplusplayground/CMakeFiles/calculator_autogen.dir
