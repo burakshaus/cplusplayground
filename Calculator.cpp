@@ -3,7 +3,7 @@
 Calculator::Calculator(QWidget *parent) : QMainWindow(parent) {
     // 1. Initialize State
     runningTotal = 0.0;
-    waitForNewInput = true;
+    WaitForNewInput = true;
 
     // 2. Setup UI Layout
     QWidget *centralWidget = new QWidget(this);
@@ -45,9 +45,9 @@ void Calculator::onDigitClicked() {
     QPushButton *clickedButton = qobject_cast<QPushButton *>(sender());
     QString digitValue = clickedButton->text();
 
-    if (display->text() == "0" || waitForNewInput) {
+    if (display->text() == "0" || WaitForNewInput) {
         display->setText(digitValue);
-        waitForNewInput = false;
+        WaitForNewInput = false;
     } else {
         display->setText(display->text() + digitValue);
     }
@@ -57,7 +57,7 @@ void Calculator::onOperatorClicked() {
     QPushButton *clickedButton = qobject_cast<QPushButton *>(sender());
     runningTotal = display->text().toDouble();
     pendingOperator = clickedButton->text();
-    waitForNewInput = true;
+    WaitForNewInput = true;
 }
 
 void Calculator::onEqualClicked() {
@@ -73,14 +73,14 @@ void Calculator::onEqualClicked() {
 
     display->setText(QString::number(result));
     runningTotal = result;
-    waitForNewInput = true;
+    WaitForNewInput = true;
 }
 
 void Calculator::onClearClicked() {
     runningTotal = 0.0;
     pendingOperator.clear();
     display->setText("0");
-    waitForNewInput = true;
+    WaitForNewInput = true;
 }
 
 Calculator::~Calculator() {
