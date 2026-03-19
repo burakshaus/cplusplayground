@@ -10,10 +10,10 @@ string friend_name;
 cout << "enter your fiend's name" << '\n';
 cin >> friend_name; 
 int age ;
-cout << "Have you seen " << friend_name << "lately?" << '\n';
+cout << "Have you seen " << friend_name << " lately?" << '\n';
 cout << "enter your age"; 
 cin >> age ; 
-cout << "I hear you just had a birthday and you are " << ++age << "years old" << '\n';
+cout << "I hear you just had a birthday and you are " << ++age << " years old" << '\n';
 if(age <= 0 && age >= 110){
 cout << "you're kidding !" << '\n';
 }
@@ -25,6 +25,6 @@ cout << "Next year you will be able to vote" << '\n';
 else if (age>70){
 cout << "Are you retired?" << '\n';
 }
-cout << " Yours sincerely,\n\n Ahmet Burak Can" << '\n'; 
+cout << " Yours sincerely,\n\n" << "Ahmet Burak Can"; 
 return 1;
 }
