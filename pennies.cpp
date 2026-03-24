@@ -7,16 +7,16 @@
 int main() {
     // We use a vector of pairs to keep the coins in a specific order for the prompts
     // The value represents the worth of one coin in cents
-    std::vector<std::pair<std::string, int>> coinTypes = {
-        {"pennies", 1},
-        {"nickels", 5},
-        {"dimes", 10},
-        {"quarters", 25},
-        {"half dollars", 50},
-        {"one-dollar coins", 100}
+    std::vector<std::pair<std::string,int>> cointypes={
+	{"pennies",1},
+	{"nickels",5},
+	{"dimes",10},
+	{"quarters",15},
+	{"half dollars",50},
+	{"one-dollar coins",100}
     };
 
-    std::map<std::string, int> wallet;
+    std::map<std::string,int> wallet;
     int totalCents = 0;
 
     std::cout << "--- Coin Counter Program ---\n" << std::endl;
