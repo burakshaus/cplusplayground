@@ -16,11 +16,11 @@ int main() {
 	{"one-dollar coins",100}
     };
 
-    std::map<string,int> wallet;
+    map<string,int> wallet;
     int totalCents = 0;
 
     cout << "--- Coin Counter Program ---\n" << endl;
-
+	cout 
     // Loop through types to get tuser input
     for (const auto& coin : cointypes) {
         int count;
@@ -28,7 +28,7 @@ int main() {
         
         // Basic input validation to ensure a number is entered
         if (!(!cin >> count)) {
-            cout << "Invalid input. Please enter a number." << std::endl;
+            cout << "Invalid input. Please enter a number." << endl;
             return 1; 
         }
 
