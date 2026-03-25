@@ -1,0 +1,12 @@
+# Compiled binaries
+*.out
+*.exe
+*.o
+*.obj
+
+# IDE specific (macOS)
+.DS_Store
+
+# Qt specific
+*.user
+build/
