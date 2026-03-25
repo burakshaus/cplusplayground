@@ -3,11 +3,11 @@
 #include <map>
 #include <vector>
 #include <iomanip>
-
+using namespace std;
 int main() {
     // We use a vector of pairs to keep the coins in a specific order for the prompts
     // The value represents the worth of one coin in cents
-    std::vector<std::pair<std::string,int>> cointypes={
+    std::vector<pair<string,int>> cointypes={
 	{"pennies",1},
 	{"nickels",5},
 	{"dimes",10},
@@ -16,19 +16,19 @@ int main() {
 	{"one-dollar coins",100}
     };
 
-    std::map<std::string,int> wallet;
+    std::map<string,int> wallet;
     int totalCents = 0;
 
-    std::cout << "--- Coin Counter Program ---\n" << std::endl;
+    cout << "--- Coin Counter Program ---\n" << endl;
 
-    // Loop through types to get user input
-    for (const auto& coin : coinTypes) {
+    // Loop through types to get tuser input
+    for (const auto& coin : cointypes) {
         int count;
-        std::cout << "How many " << coin.first << " do you have? ";
+        cout << "How many " << coin.first << " do you have? ";
         
         // Basic input validation to ensure a number is entered
-        if (!(std::cin >> count)) {
-            std::cout << "Invalid input. Please enter a number." << std::endl;
+        if (!(!cin >> count)) {
+            cout << "Invalid input. Please enter a number." << std::endl;
             return 1; 
         }
 
@@ -40,13 +40,13 @@ int main() {
     // Output formatting
     double totalDollars = totalCents / 100.0;
 
-    std::cout << "\n--- Summary ---" << std::endl;
-    for (const auto& coin : coinTypes) {
-        std::cout << "You have " << wallet[coin.first] << " " << coin.first << "." << std::endl;
+    cout << "\n--- Summary ---" << std::endl;
+    for (const auto& coin : cointypes) {
+        cout << "You have " << wallet[coin.first] << " " << coin.first << "." << endl;
     }
 
-    std::cout << "\nThe value of all of your coins is " << totalCents << " cents." << std::endl;
-    std::cout << "The total value is $" << std::fixed << std::setprecision(2) << totalDollars << "." << std::endl;
+    cout << "\nThe value of all of your coins is " << totalCents << " cents." << endl;
+    cout << "The total value is $" << fixed << setprecision(2) << totalDollars << "." << endl;
 
     return 0;
 }
