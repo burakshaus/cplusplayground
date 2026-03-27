@@ -1,4 +1,5 @@
 #include <iostream>
+void print_square(int);;
 void print_square(int x){
 	std::cout<<x*x<<std::endl;
 }
