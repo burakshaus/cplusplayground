@@ -1,8 +1,13 @@
 #include <iostream>
 #include <vector>
 int main(){
-	std::vector<int> v = {1,2,3,4,5,6};
-for(int i = 0; i<6; ++i){
-	std::cout<<v[i]<<std::endl;
+	std::vector<int> vi;
+	for(int i = 0; i<7; ++i){
+	vi.push_back(i);
+	std::cout<<vi[i]<<std::endl;
+}
+std::vector <int> v = {5,7,9,4,6,8};
+for(int x:v){
+	std::cout<<x<<std::endl;
 }
 }
