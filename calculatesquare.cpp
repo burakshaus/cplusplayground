@@ -1,4 +1,5 @@
 #include <iostream>
+void square(int x);
 void square(int x){
 int result = 0;
 for(int i = 0; i<x;++i){
