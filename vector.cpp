@@ -10,4 +10,8 @@ std::vector <int> v = {5,7,9,4,6,8};
 for(int x:v){
 	std::cout<<x<<std::endl;
 }
+std::vector<int> v0(5);
+for(int i :v0){
+	std::cout<<i<<std::endl;
+}
 }
