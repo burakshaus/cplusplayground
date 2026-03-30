@@ -6,7 +6,7 @@ int main() {
     // 1. Use std::string
     std::vector<std::string> words;
 
-    std::cout<<"Tyoe crtl+z or crtl+d to quit"<<std::endl;
+    std::cout<<"Type crtl+z or crtl+d to quit"<<std::endl;
     // 2. Use std::string here too
     for (std::string temp; std::cin >> temp; ) {
         words.push_back(temp);
