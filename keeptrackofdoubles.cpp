@@ -8,8 +8,10 @@ largest= input;
 while(std::cin>>input){
 if(input<smallest){
 smallest = input;
+std::cout<<smallest<<" the smallest so far"<<std::endl;
 }else if(input>largest){
 largest=input;
+std::cout<<largest<<" the lergest so far"<<std::endl;
 }
 
 }
