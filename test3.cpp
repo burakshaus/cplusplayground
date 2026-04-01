@@ -39,4 +39,8 @@ cout<<"number of values: "<<units.size()<<endl;
 for(int i = 0; i<units.size(); ++i){
 cout<<doubles[i] <<" "<<units[i]<<"."<<endl;
 }
+ranges::sort(doubles);
+for(double i:doubles){
+cout"Sorted double values: "<<i<<", "<<endl;
+}
 }
