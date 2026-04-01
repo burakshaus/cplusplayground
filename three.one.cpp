@@ -11,13 +11,11 @@ int main(){
 		for(int i=0;i<myvector.size(); ++i){	std::cout<<a<<std::endl;
 			if(i==0||a!=0){a+=1;
 				
-			}
+			
+}		std::cout<<"Position: "<<a<<"char: "<<myvector[i]<<", ";
 		}
 		myvector.clear();
 		if(myvector.empty()){
-		std::cout<<"It's time for new string input. "<<std::endl;
-		}else{
-		std::cout<<"Something went wrong while clear the array. "<<std::endl;
 		}
 	}
 
