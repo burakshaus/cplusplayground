@@ -1,22 +1,19 @@
 #include "mainwindow.h"
-#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
-    // 1. Setup the Central Widget and Layout
     m_centralWidget = new QWidget(this);
     setCentralWidget(m_centralWidget);
     m_layout = new QGridLayout(m_centralWidget);
 
-    // 2. Display Setup
     display = new QLineEdit("0");
     display->setReadOnly(true);
     display->setAlignment(Qt::AlignRight);
     display->setFixedHeight(60);
-    // STYLESHEET: Force white background and black text so it's visible on Mint
-    display->setStyleSheet("font-size: 26pt; padding: 10px; color: black; background-color: white; border: 2px solid #555;");
+    // Explicit colors: Black text on White background for high visibility
+    display->setStyleSheet("font-size: 24pt; padding: 10px; color: black; background-color: white; border: 2px solid #333;");
     m_layout->addWidget(display, 0, 0, 1, 4);
 
-    // 3. Numbers 1-9
+    // Number Buttons 1-9
     const char* numLabels[3][3] = {
         {"7", "8", "9"},
         {"4", "5", "6"},
@@ -32,7 +29,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
         }
     }
 
-    // 4. Bottom Row (C, 0, =)
     QPushButton *btnC = new QPushButton("C");
     QPushButton *btn0 = new QPushButton("0");
     QPushButton *btnEq = new QPushButton("=");
@@ -49,60 +45,63 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     connect(btn0, &QPushButton::clicked, this, &MainWindow::digitClicked);
     connect(btnEq, &QPushButton::clicked, this, &MainWindow::equalClicked);
 
-    // 5. Operators (+, -, *, /)
     const char* opLabels[] = {"/", "*", "-", "+"};
     for (int i = 0; i < 4; ++i) {
         QPushButton *btn = new QPushButton(opLabels[i]);
         btn->setMinimumHeight(60);
-        // Style operators differently so they stand out
-        btn->setStyleSheet("font-weight: bold; background-color: #f0f0f0;");
+        btn->setStyleSheet("font-weight: bold; background-color: #e1e1e1;");
         m_layout->addWidget(btn, i + 1, 3);
         connect(btn, &QPushButton::clicked, this, &MainWindow::operatorClicked);
     }
 
-    setWindowTitle("Burak's Calculator");
+    setWindowTitle("Burak's Full Calc");
     resize(350, 480);
 }
 
-// Slot for 0-9
 void MainWindow::digitClicked() {
     QPushButton *button = qobject_cast<QPushButton *>(sender());
     if (!button) return;
 
-    QString digitValue = button->text();
-
-    // If the display currently shows "0" or an operator, replace it with the number
-    if (display->text() == "0" || waitingForSecondNum) {
-        display->setText(digitValue);
-        waitingForSecondNum = false;
-    } else {
-        display->setText(display->text() + digitValue);
+    // If screen says "0" or "Error", clear it before adding the first real number
+    if (display->text() == "0" || display->text() == "Error") {
+        display->clear();
     }
+    
+    // Append the number to the current text
+    display->setText(display->text() + button->text());
 }
 
-// Slot for +, -, *, /
 void MainWindow::operatorClicked() {
     QPushButton *button = qobject_cast<QPushButton *>(sender());
     if (!button) return;
 
-    // If there was a previous math operation waiting (e.g. 5 + 5 +), calculate it first
-    if (!pendingOp.isEmpty() && !waitingForSecondNum) {
-        equalClicked();
-    }
+    // Don't allow starting with an operator (except maybe minus, but let's keep it simple)
+    if (display->text() == "0" || display->text().isEmpty()) return;
 
+    // If there is already an operator, don't add another one
+    if (!pendingOp.isEmpty()) return;
+
+    // Save the first number and the operator
     firstNum = display->text().toDouble();
     pendingOp = button->text();
-    
-    // Show the operator on the screen so the user knows it's clicked
-    display->setText(pendingOp); 
-    waitingForSecondNum = true;
+
+    // Add the operator to the screen (e.g., "4+")
+    display->setText(display->text() + pendingOp);
 }
 
-// Slot for =
 void MainWindow::equalClicked() {
     if (pendingOp.isEmpty()) return;
 
-    double secondNum = display->text().toDouble();
+    QString currentText = display->text();
+    
+    // Find the second number by looking at everything AFTER the operator
+    // Example: If text is "4+12", it looks for the string after the "+"
+    int opIndex = currentText.indexOf(pendingOp);
+    QString secondNumStr = currentText.mid(opIndex + 1);
+
+    if (secondNumStr.isEmpty()) return;
+
+    double secondNum = secondNumStr.toDouble();
     double result = 0;
 
     if (pendingOp == "+") result = firstNum + secondNum;
@@ -117,17 +116,15 @@ void MainWindow::equalClicked() {
         }
     }
 
-    // Show result
+    // Show the result
     display->setText(QString::number(result, 'g', 15));
     
-    // Reset for next calculation
+    // Clear the operator so we can start a new calculation
     pendingOp = "";
-    waitingForSecondNum = true; 
 }
 
 void MainWindow::clearClicked() {
     display->setText("0");
     firstNum = 0;
     pendingOp = "";
-    waitingForSecondNum = false;
 }
