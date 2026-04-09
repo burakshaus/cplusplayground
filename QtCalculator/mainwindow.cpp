@@ -49,7 +49,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     for (int i = 0; i < 4; ++i) {
         QPushButton *btn = new QPushButton(opLabels[i]);
         btn->setMinimumHeight(60);
-        btn->setStyleSheet("font-weight: bold; background-color: #e1e1e1;");
+        btn->setStyleSheet("font-weight: bold; background-color: black;");
         m_layout->addWidget(btn, i + 1, 3);
         connect(btn, &QPushButton::clicked, this, &MainWindow::operatorClicked);
     }
