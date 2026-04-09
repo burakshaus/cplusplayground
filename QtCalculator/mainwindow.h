@@ -5,20 +5,31 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QGridLayout>
+#include <QString>
 
 class MainWindow : public QMainWindow {
-    Q_OBJECT // Fixed spelling here
+    Q_OBJECT
 
 public:
     MainWindow(QWidget *parent = nullptr);
+    ~MainWindow() = default;
 
-private slots: // Fixed 'slpts' to 'slots'
+private slots:
     void digitClicked();
+    void operatorClicked();
+    void equalClicked();
+    void clearClicked();
 
 private:
+    // UI Elements
     QLineEdit *display;
-    QWidget *centralWidget;
-    QGridLayout *layout;
+    QWidget *m_centralWidget;
+    QGridLayout *m_layout;
+
+    // Logic Variables
+    double firstNum = 0;
+    QString pendingOp = "";
+    bool waitingForSecondNum = false;
 };
 
-#endif
+#endif // MAINWINDOW_H
