@@ -7,7 +7,10 @@ int main(){
     while(std::cin>>input){
     myvector.push_back(input);
     }
+    int sum;
     for(int i:myvector){
+        sum+=i;
         std::cout<<i<<"\t";
     }
+    std::cout<<"Sum of the elements: "<<sum<<std::endl;
 }
